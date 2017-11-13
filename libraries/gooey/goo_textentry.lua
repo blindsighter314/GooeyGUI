@@ -11,6 +11,7 @@ goo.TextEntryMeta = {
 	onTab = function() end,
 	onSelect = function() end,
 	editable = true,
+	alignment = {horizontal = "left", vertical = "center"},
 
 	--internal
 	editing = false,
@@ -107,6 +108,10 @@ function goo.TextEntryMeta:GetCursorColor()
 	return self.cursorColor
 end
 
+function goo.ComboBoxMeta:GetAlignment()
+	return self.alignment
+end
+
 
 
 
@@ -115,6 +120,18 @@ end
 
 function goo.TextEntryMeta:Clear()
 	self.value = ""
+end
+
+function goo.TextEntryMeta:CenterText()
+	self.alignment = {horizontal = "center", vertical = "center"}
+end
+
+function goo.TextEntryMeta:AlignHorizontalText(alignment)
+	self.alignment.horizontal = alignment
+end
+
+function goo.TextEntryMeta:AlignVerticalText(alignment)
+	self.alignment.vertical = alignment
 end
 
 function goo.getTextEntry(id)
@@ -171,8 +188,25 @@ function goo.textentryDrawIndividual(textentry)
 		love.graphics.setFont(textentry.font)
 	end
 
+	local moveHorizontal, moveVertical = 3, 3
+
+	if textentry.alignment.horizontal == "center" then
+		moveHorizontal = math.floor((textentry.w / 2) - (goo.getTextWidth(textentry) / 2))
+	elseif textentry.alignment.horizontal == "right" then
+		moveHorizontal = math.floor(textentry.w - goo.getTextWidth(textentry.value) - 3)
+	end
+
+	if textentry.alignment.vertical == "center" then
+		moveVertical = math.floor((textentry.l / 2) - (goo.getTextHeight(textentry.value) / 2))
+	elseif textentry.alignment.vertical == "bottom" then
+		moveVertical = math.floor(textentry.l - goo.getTextHeight(textentry.value) - 3)
+	end
+
 	love.graphics.print(string.sub(textentry.value, (textentry.dist + 1),
-		string.len(textentry.value)), textentry.x + 2, textentry.y + ((textentry.l / 2) - 7))
+		string.len(textentry.value)), textentry.x + moveHorizontal, textentry.y + moveVertical)
+
+--	love.graphics.print(string.sub(textentry.value, (textentry.dist + 1),
+--		string.len(textentry.value)), textentry.x + 2, textentry.y + ((textentry.l / 2) - 7))
 
 	if currentFont then love.graphics.setFont(currentFont) end
 
