@@ -197,7 +197,7 @@ function goo.comboboxDrawIndividual(combobox)
 
 	if combobox.alignment.vertical == "center" then
 		moveVertical = math.floor((combobox.l / 2) - (goo.getTextHeight(combobox.text.value) / 2))
-	elseif combobox.alignment.vertical == "right" then
+	elseif combobox.alignment.vertical == "bottom" then
 		moveVertical = math.floor(combobox.l - goo.getTextHeight(combobox.text.value) - 3)
 	end
 
@@ -228,7 +228,7 @@ function goo.comboboxDrawIndividual(combobox)
 
 			if combobox.alignment.vertical == "center" then
 				moveVertical = math.floor((combobox.l / 2) - (goo.getTextHeight(choice) / 2))
-			elseif combobox.alignment.vertical == "right" then
+			elseif combobox.alignment.vertical == "bottom" then
 				moveVertical = math.floor(combobox.l - goo.getTextHeight(choice) - 3)
 			end
 
