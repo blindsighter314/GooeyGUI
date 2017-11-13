@@ -57,6 +57,10 @@ function goo.TextEntryMeta:SetColor(r, g, b)
 	self.color = {r, g, b}
 end
 
+function goo.TextEntryMeta:SetEditingColor(r, g, b)
+	self.selectedColor = {r, g, b}
+end
+
 function goo.TextEntryMeta:SetTextColor(r, g, b)
 	self.textColor = {r, g, b}
 end
@@ -89,6 +93,10 @@ end
 
 function goo.TextEntryMeta:GetColor()
 	return self.color
+end
+
+function goo.TextEntryMeta:GetEditingColor()
+	return self.selectedColor
 end
 
 function goo.TextEntryMeta:GetTextColor()
