@@ -293,6 +293,10 @@ function goo.textentryTextInput(text)
 				if (goo.getTextWidth(string.sub(textentry.value, (textentry.dist + 1),
 					string.len(textentry.value))) + goo.getTextWidth(text)) > textentry.w then
 					textentry.dist = (textentry.dist + 1)
+					if (goo.getTextWidth(string.sub(textentry.value, (textentry.dist + 1),
+						string.len(textentry.value))) + goo.getTextWidth(text)) > textentry.w then
+						textentry.dist = (textentry.dist + 1)
+					end
 				end
 
 				textentry.cx = (textentry.x + goo.getTextWidth(string.sub(textentry.value, (textentry.dist + 1),
