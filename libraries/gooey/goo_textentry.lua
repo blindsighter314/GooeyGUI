@@ -206,9 +206,6 @@ function goo.textentryDrawIndividual(textentry)
 	love.graphics.print(string.sub(textentry.value, (textentry.dist + 1),
 		string.len(textentry.value)), textentry.x + moveHorizontal, textentry.y + moveVertical)
 
---	love.graphics.print(string.sub(textentry.value, (textentry.dist + 1),
---		string.len(textentry.value)), textentry.x + 2, textentry.y + ((textentry.l / 2) - 7))
-
 	if currentFont then love.graphics.setFont(currentFont) end
 
 	if textentry.editing == true then
@@ -261,51 +258,51 @@ end
 
 function goo.textentryTextInput(text)
 	if text ~= "`" then
-	for _,textentry in pairs(goo.TextEntries) do
-		if textentry.editing == true then
-			textentry.value = (textentry.value .. text)
-
-			if (goo.getTextWidth(string.sub(textentry.value, (textentry.dist + 1),
-				string.len(textentry.value))) + goo.getTextWidth(text)) > textentry.w then
-				textentry.dist = (textentry.dist + 1)
-			end
-
-			textentry.cx = (textentry.x + goo.getTextWidth(string.sub(textentry.value,
-				(textentry.dist + 1), string.len(textentry.value))))
-			textentry.cx = (textentry.cx + 3)
-			break
-		end
-	end
-
-	local topFrame = nil
-
-	for _,id in pairs(goo.frameDrawOrder) do
-		if goo.Frames[id] then
-			topFrame = goo.Frames[id]
-		end
-	end
-
-	if topFrame then
-		for _,textentry in pairs(topFrame.children.textentries) do
+		for _,textentry in pairs(goo.TextEntries) do
 			if textentry.editing == true then
 				textentry.value = (textentry.value .. text)
 
 				if (goo.getTextWidth(string.sub(textentry.value, (textentry.dist + 1),
 					string.len(textentry.value))) + goo.getTextWidth(text)) > textentry.w then
 					textentry.dist = (textentry.dist + 1)
-					if (goo.getTextWidth(string.sub(textentry.value, (textentry.dist + 1),
-						string.len(textentry.value))) + goo.getTextWidth(text)) > textentry.w then
-						textentry.dist = (textentry.dist + 1)
-					end
 				end
 
-				textentry.cx = (textentry.x + goo.getTextWidth(string.sub(textentry.value, (textentry.dist + 1),
-					string.len(textentry.value))))
+				textentry.cx = (textentry.x + goo.getTextWidth(string.sub(textentry.value,
+					(textentry.dist + 1), string.len(textentry.value))))
 				textentry.cx = (textentry.cx + 3)
 				break
 			end
 		end
-	end
+
+		local topFrame = nil
+
+		for _,id in pairs(goo.frameDrawOrder) do
+			if goo.Frames[id] then
+				topFrame = goo.Frames[id]
+			end
+		end
+
+		if topFrame then
+			for _,textentry in pairs(topFrame.children.textentries) do
+				if textentry.editing == true then
+					textentry.value = (textentry.value .. text)
+
+					if (goo.getTextWidth(string.sub(textentry.value, (textentry.dist + 1),
+						string.len(textentry.value))) + goo.getTextWidth(text)) > textentry.w then
+						textentry.dist = (textentry.dist + 1)
+						if (goo.getTextWidth(string.sub(textentry.value, (textentry.dist + 1),
+							string.len(textentry.value))) + goo.getTextWidth(text)) > textentry.w then
+							textentry.dist = (textentry.dist + 1)
+						end
+					end
+
+					textentry.cx = (textentry.x + goo.getTextWidth(string.sub(textentry.value, (textentry.dist + 1),
+						string.len(textentry.value))))
+					textentry.cx = (textentry.cx + 3)
+					break
+				end
+			end
+		end
 	end
 end
 
@@ -332,6 +329,8 @@ function goo.textentryKeyPressed(key)
 				textentry.onEnter()
 			elseif key == "tab" then
 				textentry.onTab()
+			elseif key == "v" and love.keyboard.isDown("lctrl") then
+				textentry:SetValue(textentry:GetValue() .. love.system.getClipboardText())
 			end
 		end
 	end
@@ -367,6 +366,8 @@ function goo.textentryKeyPressed(key)
 					textentry.onEnter()
 				elseif key == "tab" then
 					textentry.onTab()
+				elseif key == "v" and love.keyboard.isDown("lctrl") then
+					textentry:SetValue(textentry:GetValue() .. love.system.getClipboardText())
 				end
 			end
 		end
