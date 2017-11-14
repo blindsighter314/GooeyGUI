@@ -120,7 +120,7 @@ end
 -- Actions =================================================================================================================
 
 function goo.TextEntryMeta:Clear()
-	self.value = ""
+	self:SetValue("")
 end
 
 function goo.TextEntryMeta:CenterText()
