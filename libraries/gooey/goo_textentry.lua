@@ -30,6 +30,7 @@ goo.FrameMeta.children.textentries = {}
 
 function goo.TextEntryMeta:SetPos(x, y)
 	self.x, self.y = x, y
+	self.cx = x + 3
 end
 
 function goo.TextEntryMeta:SetSize(w, l)
@@ -259,6 +260,7 @@ function goo.textentryMousePressed(x, y, button)
 end
 
 function goo.textentryTextInput(text)
+	if text ~= "`" then
 	for _,textentry in pairs(goo.TextEntries) do
 		if textentry.editing == true then
 			textentry.value = (textentry.value .. text)
@@ -299,6 +301,7 @@ function goo.textentryTextInput(text)
 				break
 			end
 		end
+	end
 	end
 end
 
