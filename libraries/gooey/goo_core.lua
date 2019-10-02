@@ -8,13 +8,36 @@ goo.mousepressedtable = {}
 goo.mousereleasedtable = {}
 goo.mousemovedtable = {}
 
+-- Source: http://lua-users.org/wiki/CopyTable
+local function deepcopy(orig, copies)
+    copies = copies or {}
+    local orig_type = type(orig)
+    local copy
+    if orig_type == 'table' then
+        if copies[orig] then
+            copy = copies[orig]
+        else
+            copy = {}
+            for orig_key, orig_value in next, orig, nil do
+                copy[deepcopy(orig_key, copies)] = deepcopy(orig_value, copies)
+            end
+            copies[orig] = copy
+            setmetatable(copy, deepcopy(getmetatable(orig), copies))
+        end
+    else -- number, string, boolean, etc
+        copy = orig
+    end
+    return copy
+end
+
 function goo.create(element)
 	if goo.elements[element] then 				-- If the element exists...
 		local t = setmetatable({}, { 			-- define t as the meta table of the element stated
 			__index = goo.elements[element].metatable
 		})
 		t.type = element
-		return t 								-- return the element
+		local r = deepcopy(t) 					-- Split the element from being a pointer
+		return r 								-- return the element
 	end
 end
 
