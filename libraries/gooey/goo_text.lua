@@ -3,7 +3,7 @@ goo.TextMeta = {
 	x = 0, y = 0, w = 200,
 	value = "",
 	font = nil,
-	color = {255, 255, 255}
+	color = {255, 255, 255, 1}
 }
 
 goo.Texts = {}
@@ -24,8 +24,9 @@ function goo.TextMeta:SetWidth(w)
 	self.w = w
 end
 
-function goo.TextMeta:SetColor(r, g, b)
-	self.color = {r, g, b}
+function goo.TextMeta:SetColor(r, g, b, a)
+	if a == nil then a = 1 end
+	self.color = {r, g, b, a}
 end
 
 function goo.TextMeta:SetText(txt)

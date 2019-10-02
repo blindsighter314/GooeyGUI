@@ -3,10 +3,10 @@ goo.TextEntryMeta = {
 	x = 0, y = 0, w = 0, l = 0,
 	value = "",
 	font = nil,
-	color = {255, 255, 255},
-	selectedColor = {200, 200, 200},
-	textColor = {0, 0, 0},
-	cursorColor = {0, 0, 0},
+	color = {255, 255, 255, 1},
+	selectedColor = {200, 200, 200, 1},
+	textColor = {0, 0, 0, 1},
+	cursorColor = {0, 0, 0, 1},
 	onEnter = function() end,
 	onTab = function() end,
 	onSelect = function() end,
@@ -55,20 +55,24 @@ function goo.TextEntryMeta:SetFont(font)
 	self.font = font
 end
 
-function goo.TextEntryMeta:SetColor(r, g, b)
-	self.color = {r, g, b}
+function goo.TextEntryMeta:SetColor(r, g, b, a)
+	if a == nil then a = 1 end
+	self.color = {r, g, b, a}
 end
 
-function goo.TextEntryMeta:SetEditingColor(r, g, b)
-	self.selectedColor = {r, g, b}
+function goo.TextEntryMeta:SetEditingColor(r, g, b, a)
+	if a == nil then a = 1 end
+	self.selectedColor = {r, g, b, a}
 end
 
-function goo.TextEntryMeta:SetTextColor(r, g, b)
-	self.textColor = {r, g, b}
+function goo.TextEntryMeta:SetTextColor(r, g, b, a)
+	if a == nil then a = 1 end
+	self.textColor = {r, g, b, a}
 end
 
-function goo.TextEntryMeta:SetCursorColor(r, g, b)
-	self.cursorColor = {r, g, b}
+function goo.TextEntryMeta:SetCursorColor(r, g, b, a)
+	if a == nil then a = 1 end
+	self.cursorColor = {r, g, b, a}
 end
 
 

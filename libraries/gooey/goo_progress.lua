@@ -2,8 +2,8 @@ goo.ProgressMeta = {
 	id = "metaid",
 	x = 0, y = 0, w = 0, l = 0,
 	value = 0,
-	color = {255, 255, 255},
-	progressColor = {0, 255, 0}
+	color = {255, 255, 255, 1},
+	progressColor = {0, 255, 0, 1}
 }
 
 goo.Progresses = {}
@@ -30,12 +30,14 @@ function goo.ProgressMeta:SetValue(int)
 	self.value = int
 end
 
-function goo.ProgressMeta:SetColor(r, g, b)
-	self.color = {r, g, b}
+function goo.ProgressMeta:SetColor(r, g, b, a)
+	if a == nil then a = 1 end
+	self.color = {r, g, b, a}
 end
 
-function goo.ProgressMeta:SetProgressColor(r, g, b)
-	self.progressColor = {r, g, b}
+function goo.ProgressMeta:SetProgressColor(r, g, b, a)
+	if a == nil then a = 1 end
+	self.progressColor = {r, g, b, a}
 end
 
 

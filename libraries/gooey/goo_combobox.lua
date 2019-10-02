@@ -1,9 +1,9 @@
 goo.ComboBoxMeta = {
 	id = "metaid",
 	x = 0, y = 0, w = 0, l = 0,
-	color = {255, 255, 255},
-	borderColor = {0, 0, 0},
-	textColor = {0, 0, 0},
+	color = {255, 255, 255, 1},
+	borderColor = {0, 0, 0, 1},
+	textColor = {0, 0, 0, 1},
 	selected = 0,
 	text = {value = "", x = 2, y = 0},
 	font = nil,
@@ -35,12 +35,14 @@ function goo.ComboBoxMeta:SetSize(w, l)
 	self.w, self.l = w, l
 end
 
-function goo.ComboBoxMeta:SetColor(r, g, b)
-	self.color = {r, g, b}
+function goo.ComboBoxMeta:SetColor(r, g, b, a)
+	if a == nil then a = 1 end
+	self.color = {r, g, b, a}
 end
 
-function goo.ComboBoxMeta:SetTextColor(r, g, b)
-	self.textColor = {r, g, b}
+function goo.ComboBoxMeta:SetTextColor(r, g, b, a)
+	if a == nil then a = 1 end
+	self.textColor = {r, g, b, a}
 end
 
 function goo.ComboBoxMeta:SetChoices(t)

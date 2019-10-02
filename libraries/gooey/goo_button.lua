@@ -3,10 +3,10 @@ goo.ButtonMeta = {
 	x = 0, y = 0, w = 0, l = 0,
 	text = {value = "", x = 0, y = 0},
 	font = nil,
-	color = {255, 255, 255},
-	onHoverColor = {200, 200, 200},
-	textColor = {0, 0, 0},
-	onHoverTextColor = {0, 0, 0},
+	color = {255, 255, 255, 1},
+	onHoverColor = {200, 200, 200, 1},
+	textColor = {0, 0, 0, 1},
+	onHoverTextColor = {0, 0, 0, 1},
 	onHoverSound = nil,
 	hoverVolume = 0.1,
 	DoClick = function() end,
@@ -36,20 +36,24 @@ function goo.ButtonMeta:SetPos(x, y)
 	self.x, self.y = x, y
 end
 
-function goo.ButtonMeta:SetColor(r, g, b)
-	self.color = {r, g, b}
+function goo.ButtonMeta:SetColor(r, g, b, a)
+	if a == nil then a = 1 end
+	self.color = {r, g, b, a}
 end
 
-function goo.ButtonMeta:SetOnHoverColor(r, g, b)
-	self.onHoverColor = {r, g, b}
+function goo.ButtonMeta:SetOnHoverColor(r, g, b, a)
+	if a == nil then a = 1 end
+	self.onHoverColor = {r, g, b, a}
 end
 
-function goo.ButtonMeta:SetTextColor(r, g, b)
-	self.textColor = {r, g, b}
+function goo.ButtonMeta:SetTextColor(r, g, b, a)
+	if a == nil then a = 1 end
+	self.textColor = {r, g, b, a}
 end
 
-function goo.ButtonMeta:SetOnHoverTextColor(r, g, b)
-	self.onHoverTextColor = {r, g, b}
+function goo.ButtonMeta:SetOnHoverTextColor(r, g, b, a)
+	if a == nil then a = 1 end
+	self.onHoverTextColor = {r, g, b, a}
 end
 
 function goo.ButtonMeta:SetText(str)
@@ -82,19 +86,19 @@ function goo.ButtonMeta:GetPos(x, y)
 	return self.x, self.y
 end
 
-function goo.ButtonMeta:GetColor(r, g, b)
+function goo.ButtonMeta:GetColor(r, g, b, a)
 	return self.color
 end
 
-function goo.ButtonMeta:GetOnHoverColor(r, g, b)
+function goo.ButtonMeta:GetOnHoverColor(r, g, b, a)
 	return self.onHoverColor
 end
 
-function goo.ButtonMeta:GetTextColor(r, g, b)
+function goo.ButtonMeta:GetTextColor(r, g, b, a)
 	return self.textColor
 end
 
-function goo.ButtonMeta:GetOnHoverTextColor(r, g, b)
+function goo.ButtonMeta:GetOnHoverTextColor(r, g, b, a)
 	return self.onHoverTextColor
 end
 
