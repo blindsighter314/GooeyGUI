@@ -2,8 +2,8 @@ goo.FrameMeta = {
 	id = "metaid",
 	x = 0, y = 0, w = 0, l = 0,
 	headerLength = 20,
-	headerColor = {120, 123, 125}, bodyColor = {107, 111, 113},
-	title = "Window", titleColor = {255, 255, 255},
+	headerColor = {120, 123, 125, 1}, bodyColor = {107, 111, 113, 1},
+	title = "Window", titleColor = {255, 255, 255, 1},
 	font = nil, draggable = false,
 	showClose = true,
 	onClose = function() end,
@@ -30,16 +30,19 @@ function goo.FrameMeta:SetSize(w, l)
 	self.w, self.l = w, l
 end
 
-function goo.FrameMeta:SetHeaderColor(r, g, b)
-	self.headerColor = {r, g, b}
+function goo.FrameMeta:SetHeaderColor(r, g, b, a)
+	if a == nil then a = 1 end
+	self.headerColor = {r, g, b, a}
 end
 
-function goo.FrameMeta:SetBodyColor(r, g, b)
-	self.bodyColor = {r, g, b}
+function goo.FrameMeta:SetBodyColor(r, g, b, a)
+	if a == nil then a = 1 end
+	self.bodyColor = {r, g, b, a}
 end
 
-function goo.FrameMeta:SetTitleColor(r, g, b)
-	self.titleColor = {r, g, b}
+function goo.FrameMeta:SetTitleColor(r, g, b, a)
+	if a == nil then a = 1 end
+	self.titleColor = {r, g, b, a}
 end
 
 function goo.FrameMeta:SetTitle(text)
@@ -214,7 +217,7 @@ function goo.frameMousePressed(x, y, button)
 			table.insert(goo.frameDrawOrder, frameSelected)
 		end
 
-		if gotframe and gotframe.id == frameSelected then
+		if gotframe and gotframe.id == frameSelected and gotframe:GetDraggable() == true then
 			gotframe.dragging = true
 			gotframe.mouseOffsetX = (love.mouse.getX() - gotframe.x)
 			gotframe.mouseOffsetY = (love.mouse.getY() - gotframe.y)
