@@ -2,7 +2,7 @@ goo.FrameMeta = {
 	id = "metaid",
 	x = 0, y = 0, w = 0, l = 0,
 	headerLength = 20,
-	headerColor = {47.1, 48.2, 49, 1}, bodyColor = {42, 43.5, 44.3, 1},
+	headerColor = {0.471, 0.482, 0.49, 1}, bodyColor = {0.42, 0.435, 0.443, 1},
 	title = "Window", titleColor = {1, 1, 1, 1},
 	font = nil, draggable = false,
 	showClose = true,
