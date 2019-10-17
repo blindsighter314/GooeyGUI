@@ -3,7 +3,7 @@ goo.TextMeta = {
 	x = 0, y = 0, w = 200,
 	value = "",
 	font = nil,
-	color = {255, 255, 255, 1}
+	color = {1, 1, 1, 1}
 }
 
 goo.Texts = {}

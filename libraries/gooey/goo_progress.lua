@@ -2,8 +2,8 @@ goo.ProgressMeta = {
 	id = "metaid",
 	x = 0, y = 0, w = 0, l = 0,
 	value = 0,
-	color = {255, 255, 255, 1},
-	progressColor = {0, 255, 0, 1}
+	color = {1, 1, 1, 1},
+	progressColor = {0, 1, 0, 1}
 }
 
 goo.Progresses = {}

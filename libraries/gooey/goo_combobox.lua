@@ -1,7 +1,7 @@
 goo.ComboBoxMeta = {
 	id = "metaid",
 	x = 0, y = 0, w = 0, l = 0,
-	color = {255, 255, 255, 1},
+	color = {1, 1, 1, 1},
 	borderColor = {0, 0, 0, 1},
 	textColor = {0, 0, 0, 1},
 	selected = 0,

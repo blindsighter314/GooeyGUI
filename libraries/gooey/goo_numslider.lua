@@ -4,7 +4,7 @@ goo.NumsliderMeta = {
 	min = 0, max = 1, value = 0,
 	color = {0, 0, 0, 1},
 	slideX = 0, slideY = 0,
-	slideColor = {255, 255, 255, 1},
+	slideColor = {1, 1, 1, 1},
 	onValueChanged = function(newValue) end,
 
 	-- internal
